@@ -1,7 +1,7 @@
 # Releases
 
-The initial release is **0.1.0-beta.1** (Android version code 3).
-Use 0.1.0-beta.2, beta.3, etc. for iterations toward the first stable release.
+The current release is **0.1.0-beta.2** (Android version code 4).
+The initial beta.1 used version code 3. Use beta.3, beta.4, etc. for subsequent iterations.
 After stabilization, use 0.1.x for fixes and 0.2.0 for a significant feature set.
 Every published APK must have a strictly increasing version code, regardless of
 the displayed version name.

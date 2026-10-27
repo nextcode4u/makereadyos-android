@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Matches MakeReadyOS assets/icons/pwa/makereadyos.svg. The inset protects launcher masks. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp" android:height="108dp"
+    android:viewportWidth="512" android:viewportHeight="512">
+    <group android:pivotX="256" android:pivotY="256" android:scaleX="0.65" android:scaleY="0.65">
+        <path android:fillColor="#111c2d" android:strokeColor="#56b3ff" android:strokeWidth="14"
+            android:pathData="M108,92H404Q438,92 438,126V386Q438,420 404,420H108Q74,420 74,386V126Q74,92 108,92Z" />
+        <path android:fillColor="#49d49a"
+            android:pathData="M124,140H212Q224,140 224,152V186Q224,198 212,198H124Q112,198 112,186V152Q112,140 124,140Z" />
+        <path android:fillColor="#56b3ff"
+            android:pathData="M124,224H212Q224,224 224,236V270Q224,282 212,282H124Q112,282 112,270V236Q112,224 124,224Z" />
+        <path android:fillColor="#ffbf66"
+            android:pathData="M124,308H212Q224,308 224,320V354Q224,366 212,366H124Q112,366 112,354V320Q112,308 124,308Z" />
+        <path android:strokeColor="#f8fafc" android:strokeWidth="22" android:strokeLineCap="round"
+            android:pathData="M276,178H364M276,262H364M276,346H364" />
+        <path android:strokeColor="#49d49a" android:strokeWidth="28"
+            android:strokeLineCap="round" android:strokeLineJoin="round"
+            android:pathData="M291,332L331,372L417,264" />
+    </group>
+</vector>

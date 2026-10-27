@@ -102,7 +102,7 @@ public final class WorkspaceApi {
         connection.setRequestMethod(method);
         connection.setRequestProperty("Accept", "application/json");
         connection.setRequestProperty("Origin", origin());
-        connection.setRequestProperty("User-Agent", "MakeReadyOS-Android/0.1.0-beta.1");
+        connection.setRequestProperty("User-Agent", "MakeReadyOS-Android/0.1.0-beta.2");
         if (userId != null) connection.setRequestProperty("X-Mros-Expected-User", userId);
         for (Map.Entry<String, List<String>> header : cookies.get(uri, Map.of()).entrySet())
             connection.setRequestProperty(header.getKey(), String.join("; ", header.getValue()));
