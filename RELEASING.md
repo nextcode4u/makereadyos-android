@@ -1,7 +1,7 @@
 # Releases
 
-The current release is **0.1.0-beta.2** (Android version code 4).
-The initial beta.1 used version code 3. Use beta.3, beta.4, etc. for subsequent iterations.
+The current release is **0.1.0-beta.3** (Android version code 5).
+Earlier beta.1 and beta.2 used codes 3 and 4. Use beta.4, beta.5, etc. for subsequent iterations.
 After stabilization, use 0.1.x for fixes and 0.2.0 for a significant feature set.
 Every published APK must have a strictly increasing version code, regardless of
 the displayed version name.
@@ -37,5 +37,8 @@ matching bundled-web source archive. GitHub also provides this repository's tagg
 source. Include upgrade cautions and known limits in release notes.
 
 Release APKs and signing material are not source files; keep them out of Git.
+Publish only the generic APK as the standard release asset. Keep operator-specific
+Firebase-configured APKs private unless their distribution is explicitly approved.
+SDK-enabled builds in beta.3 do not yet deliver work notifications.
 Do not publish internal plans, operational notes, private screenshots or test
 fixtures. A repository's visibility must not be changed as part of releasing.

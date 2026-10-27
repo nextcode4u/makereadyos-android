@@ -8,6 +8,7 @@ local.properties
 *.iml
 .DS_Store
 .local/
+nonpublish/
 *.aab
 *.apks
 *.idsig
@@ -21,3 +22,5 @@ key.properties
 captures/
 release-artifacts/
 web-source/
+google-services.json
+*-firebase-adminsdk-*.json
