@@ -36,8 +36,8 @@ android {
         applicationId 'com.makereadyos.android'
         minSdk 26
         targetSdk 36
-        versionCode 6
-        versionName '0.1.0-beta.4'
+        versionCode 7
+        versionName '0.1.0-beta.5'
     }
     compileOptions {
         coreLibraryDesugaringEnabled true

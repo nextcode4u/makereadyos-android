@@ -1,3 +1,5 @@
 <vector xmlns:android="http://schemas.android.com/apk/res/android" android:width="24dp" android:height="24dp" android:viewportWidth="24" android:viewportHeight="24">
-    <path android:fillColor="#FFFFFFFF" android:pathData="M12,2L2,10L5,10L5,21L10,21L10,14L14,14L14,21L19,21L19,10L22,10Z" />
+    <!-- Android uses the alpha mask: eyes and smile must be transparent cutouts. -->
+    <path android:fillColor="#FFFFFFFF" android:fillType="evenOdd"
+        android:pathData="M3,9C2,6 4,3 7,3C9,3 10.5,4 11,6L13,6C13.5,4 15,3 17,3C20,3 22,6 21,9C22.3,10.2 23,12 23,14C23,18.5 18,21 12,21C6,21 1,18.5 1,14C1,12 1.7,10.2 3,9Z M5.5,7A1.5,1.5 0,1 0,8.5 7A1.5,1.5 0,1 0,5.5 7Z M15.5,7A1.5,1.5 0,1 0,18.5 7A1.5,1.5 0,1 0,15.5 7Z M6.5,13Q12,17.5 17.5,13L17.5,15Q12,19.5 6.5,15Z" />
 </vector>
