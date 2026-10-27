@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">MakeReadyOS</string>
+    <string name="connect_heading">Connect your workspace</string>
+    <string name="connect_help">Enter your organization\'s MakeReadyOS domain once. Next time, your workspace opens automatically.</string>
+    <string name="domain">Workspace domain</string>
+    <string name="domain_help">Use a root HTTPS domain, without a path or custom port.</string>
+    <string name="check_server">Continue</string>
+    <string name="working">Connecting&#8230;</string>
+    <string name="verify_domain">Confirm the domain with your organization before signing in. A compatible server is not proof of ownership.</string>
+    <string name="retry">Retry</string>
+    <string name="error_domain">Enter a valid HTTPS domain without a path, custom port, or credentials.</string>
+    <string name="error_tls">Secure connection failed. Check the server certificate; certificate checks cannot be bypassed.</string>
+    <string name="error_forbidden">Access was denied. Check your account permissions with an administrator.</string>
+    <string name="error_redirect">This server redirected the request. Enter its final HTTPS domain; credentials will not be forwarded.</string>
+    <string name="error_rate">Too many requests. Wait a few minutes before trying again.</string>
+    <string name="error_server">The server is temporarily unavailable. Try again later.</string>
+    <string name="error_large">The server response is too large. Contact your administrator.</string>
+    <string name="error_compatibility">This server does not match the supported API. Check the domain and server version.</string>
+    <string name="error_connection">Could not reach the server. Check your connection and try again when ready.</string>
+    <string name="web_switch_notice">Finish syncing and sign out before changing workspaces. Restart the app before connecting to another server.</string>
+    <string name="web_external_notice">Open this link in your browser. External links are not available inside the app yet.</string>
+    <string name="web_load_failed">The local interface could not open. Your pending work has not been cleared. Retry opening the interface.</string>
+    <string name="web_opening">Opening your workspace&#8230;</string>
+</resources>

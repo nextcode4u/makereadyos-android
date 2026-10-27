@@ -1,0 +1,71 @@
+plugins { id 'com.android.application' }
+
+android {
+    namespace 'com.makereadyos.android'
+    compileSdk 36
+    defaultConfig {
+        applicationId 'com.makereadyos.android'
+        minSdk 26
+        targetSdk 36
+        versionCode 3
+        versionName '0.1.0-beta.1'
+    }
+    compileOptions {
+        coreLibraryDesugaringEnabled true
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    lint { abortOnError true }
+    signingConfigs {
+        release {
+            if (System.getenv('ANDROID_KEYSTORE')) {
+                storeFile file(System.getenv('ANDROID_KEYSTORE'))
+                storePassword System.getenv('ANDROID_STORE_PASSWORD')
+                keyAlias System.getenv('ANDROID_KEY_ALIAS')
+                keyPassword System.getenv('ANDROID_KEY_PASSWORD')
+            }
+        }
+    }
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+        }
+    }
+    sourceSets.main.assets.srcDir layout.buildDirectory.dir('generated/webAssets')
+    // Opt-in, locally ignored emulator TLS fixtures; never included in release builds.
+    if (providers.gradleProperty('localEmulatorTls').orNull == 'true') {
+        sourceSets.debug {
+            manifest.srcFile rootProject.file('.local/emulator-debug/AndroidManifest.xml')
+            res.srcDir rootProject.file('.local/emulator-debug/res')
+        }
+    }
+}
+
+tasks.register('requireWebBundle') {
+    doLast {
+        if (!layout.buildDirectory.file('generated/webAssets/web/index.html').get().asFile.exists()) {
+            throw new GradleException('Bundle the web UI first: node scripts/bundle-web.mjs /path/to/MakeReadyOS')
+        }
+    }
+}
+tasks.named('preBuild').configure { dependsOn 'requireWebBundle' }
+tasks.configureEach {
+    if (name == 'validateSigningRelease') {
+        doFirst {
+            for (key in ['ANDROID_KEYSTORE', 'ANDROID_STORE_PASSWORD', 'ANDROID_KEY_ALIAS', 'ANDROID_KEY_PASSWORD']) {
+                if (!System.getenv(key)) throw new GradleException("Release signing requires environment variable " + key)
+            }
+            def metadata = new groovy.json.JsonSlurper().parse(
+                layout.buildDirectory.file('generated/webAssets/web/bundle-info.json').get().asFile)
+            if (metadata.sourceDirty) throw new GradleException('Release builds require a clean web source checkout')
+        }
+    }
+}
+
+dependencies {
+    implementation 'androidx.core:core:1.17.0'
+    implementation 'androidx.webkit:webkit:1.14.0'
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.1.5'
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation 'org.json:json:20240303'
+}

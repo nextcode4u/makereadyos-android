@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">MakeReadyOS</string>
+    <string name="connect_heading">Conecta tu espacio de trabajo</string>
+    <string name="connect_help">Ingresa el dominio de MakeReadyOS de tu organización una vez. La próxima vez, tu espacio se abrirá automáticamente.</string>
+    <string name="domain">Dominio del espacio de trabajo</string>
+    <string name="domain_help">Usa un dominio HTTPS sin rutas ni puertos personalizados.</string>
+    <string name="check_server">Continuar</string>
+    <string name="working">Conectando&#8230;</string>
+    <string name="verify_domain">Confirma el dominio con tu organización antes de iniciar sesión. Un servidor compatible no demuestra quién es su propietario.</string>
+    <string name="retry">Reintentar</string>
+    <string name="error_domain">Ingresa un dominio HTTPS válido sin rutas, puertos personalizados ni credenciales.</string>
+    <string name="error_tls">Falló la conexión segura. Revisa el certificado del servidor; no se pueden omitir las comprobaciones.</string>
+    <string name="error_forbidden">Acceso denegado. Consulta tus permisos con un administrador.</string>
+    <string name="error_redirect">El servidor redirigió la solicitud. Ingresa el dominio HTTPS final; no se reenviarán las credenciales.</string>
+    <string name="error_rate">Demasiadas solicitudes. Espera unos minutos antes de reintentar.</string>
+    <string name="error_server">El servidor no está disponible temporalmente. Inténtalo más tarde.</string>
+    <string name="error_large">La respuesta del servidor es demasiado grande. Contacta al administrador.</string>
+    <string name="error_compatibility">Este servidor no coincide con la API compatible. Revisa el dominio y la versión del servidor.</string>
+    <string name="error_connection">No se pudo conectar al servidor. Revisa tu conexión y vuelve a intentarlo.</string>
+    <string name="web_switch_notice">Termina de sincronizar y cierra sesión antes de cambiar de espacio. Reinicia la aplicación antes de conectar otro servidor.</string>
+    <string name="web_external_notice">Abre este enlace en tu navegador. Los enlaces externos aún no están disponibles dentro de la aplicación.</string>
+    <string name="web_load_failed">No se pudo abrir la interfaz local. No se ha borrado tu trabajo pendiente. Intenta abrirla de nuevo.</string>
+    <string name="web_opening">Abriendo tu espacio de trabajo&#8230;</string>
+</resources>
