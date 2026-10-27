@@ -75,6 +75,7 @@ public final class WebWorkspaceActivity extends Activity {
         settings.setJavaScriptCanOpenWindowsAutomatically(false);
         picker = new WorkspaceFilePicker(this, this::showStatus);
         reports = new ReportPdfDelivery(this, web, origin, this::showStatus);
+        nativePush = new NativePushBridge(this, web, origin);
         if (WebViewFeature.isFeatureSupported(WebViewFeature.WEB_MESSAGE_LISTENER)) {
             WebViewCompat.addWebMessageListener(web, "MakeReadyOSTheme", Set.of(origin), (view, message, source, mainFrame, reply) -> {
                 if (!mainFrame || !origin.equals(source.toString()) || message.getType() != WebMessageCompat.TYPE_STRING) return;
@@ -137,7 +138,7 @@ public final class WebWorkspaceActivity extends Activity {
         // Retain the server-issued session; the web app verifies /auth/me before loading live work.
         // Cookies are scoped to the selected host and never copied into native preferences.
         currentProcessOrigin = origin;
-        web.loadUrl(origin + "/");
+        web.loadUrl(origin + (getIntent().getBooleanExtra("openAlerts", false) ? "/?notifications=1" : "/"));
     }
 
     private void applyTheme(LinearLayout root, String mode) {
@@ -201,7 +202,13 @@ public final class WebWorkspaceActivity extends Activity {
     }
     @android.annotation.SuppressLint("GestureBackNavigation")
     @Override public void onBackPressed() { back(); }
+    private NativePushBridge nativePush;
+    @Override protected void onResume() {
+        super.onResume();
+        if (nativePush != null) nativePush.resume();
+    }
     @Override protected void onPause() {
+        if (nativePush != null) nativePush.pause();
         // Persist login and logout cookie changes before Android can reclaim the process.
         CookieManager.getInstance().flush();
         super.onPause();

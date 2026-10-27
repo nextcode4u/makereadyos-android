@@ -36,8 +36,8 @@ android {
         applicationId 'com.makereadyos.android'
         minSdk 26
         targetSdk 36
-        versionCode 5
-        versionName '0.1.0-beta.3'
+        versionCode 6
+        versionName '0.1.0-beta.4'
     }
     compileOptions {
         coreLibraryDesugaringEnabled true
@@ -61,6 +61,11 @@ android {
         }
     }
     sourceSets.main.assets.srcDir layout.buildDirectory.dir('generated/webAssets')
+    sourceSets.main.java.srcDir firebaseEnabled ? 'src/firebase/java' : 'src/noFirebase/java'
+    if (firebaseEnabled) {
+        sourceSets.debug.manifest.srcFile 'src/firebase/AndroidManifest.xml'
+        sourceSets.release.manifest.srcFile 'src/firebase/AndroidManifest.xml'
+    }
     // Opt-in, locally ignored emulator TLS fixtures; never included in release builds.
     if (providers.gradleProperty('localEmulatorTls').orNull == 'true') {
         sourceSets.debug {

@@ -1,12 +1,16 @@
 # Releases
 
-The current release is **0.1.0-beta.3** (Android version code 5).
-Earlier beta.1 and beta.2 used codes 3 and 4. Use beta.4, beta.5, etc. for subsequent iterations.
+The current release is **0.1.0-beta.4** (Android version code 6).
+Earlier beta.1, beta.2 and beta.3 used codes 3, 4 and 5. Use beta.5, beta.6, etc. for subsequent iterations.
 After stabilization, use 0.1.x for fixes and 0.2.0 for a significant feature set.
 Every published APK must have a strictly increasing version code, regardless of
 the displayed version name.
 
 ## Signed Build
+
+The recommended wrapper is `node scripts/build.mjs --profile release`, or
+`--profile firebase-release` for a private operator-specific APK. Configure the
+ignored inputs described in [BUILDING.md](BUILDING.md). Manual steps follow below.
 
 Keep the release keystore and passwords outside Git. Back them up securely:
 losing the signing key prevents normal updates to existing installations.

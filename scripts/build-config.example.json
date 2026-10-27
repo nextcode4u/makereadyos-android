@@ -1,0 +1,7 @@
+{
+  "webSource": "../MakeReadyOS",
+  "keystore": ".local/release/signing.jks",
+  "keyAlias": "makereadyos",
+  "storePasswordFile": ".local/release/store-password",
+  "keyPasswordFile": ".local/release/key-password"
+}

@@ -4,13 +4,14 @@ The familiar MakeReadyOS mobile workspace, packaged for Android with camera and
 file selection, resident PDF saving/sharing/printing, and a locally bundled
 interface that does not disappear when a connection drops.
 
-**Current beta: 0.1.0-beta.3.** Android 8.0 or newer and a compatible MakeReadyOS
+**Current beta: 0.1.0-beta.4.** Android 8.0 or newer and a compatible MakeReadyOS
 server are required. This is a beta, not a claim that every device or workflow
 has been certified.
 
-Beta.3 adds optional Firebase Messaging SDK build support and setup documentation.
-Native notification delivery is not implemented yet. The standard release APK
-does not contain an operator's Firebase configuration. Install over a previous
+Beta.4 adds account-linked Firebase notifications, foreground alerts and reusable
+build presets. Native push requires a Firebase-configured build and a matching
+server sender; follow [FIREBASE.md](FIREBASE.md) for configuration and live-device testing.
+The standard release APK does not contain an operator's Firebase configuration. Install over a previous
 signed beta without uninstalling to retain local data.
 
 ## Getting Started
@@ -45,14 +46,14 @@ are not encrypted by that passphrase. Use a secured, trusted device.
 ## Current Limits
 
 For native notification project setup, see the
-[Firebase preparation guide](https://github.com/nextcode4u/MakeReadyOS/blob/main/docs/FIREBASE_ANDROID.md).
-Creating a Firebase project alone does not enable push in beta.3. Keep downloaded
+[Firebase setup guide](https://github.com/nextcode4u/MakeReadyOS/blob/main/docs/FIREBASE_ANDROID.md).
+Creating a Firebase project alone does not enable push. Keep downloaded
 client configuration in nonpublish/google-services.json; server service-account
 keys must never be placed in the APK. Optional SDK build setup is documented in
 [FIREBASE.md](FIREBASE.md). SDK inclusion alone does not enable work alerts.
 
 Root-hosted HTTPS on port 443 only. External onboarding links, general downloads,
-native push notifications and in-app server switching are not yet supported.
+and in-app server switching are not yet supported.
 Final-walk PDFs have a dedicated native export flow. To change servers, sync all
 work, sign out, then reset app storage through Android settings and reconnect.
 
@@ -61,11 +62,14 @@ Test new releases with synthetic accounts before using live workflows.
 
 ## Build
 
+For one-command debug, Firebase and signed release builds, use the
+[build presets](BUILDING.md). Private inputs stay in ignored local files.
+
 Use JDK 21, Android SDK 36, build tools 35.0.0 and the web project's Node/npm
 toolchain. Android Studio is optional. Set ANDROID_HOME.
 
 This beta bundles MakeReadyOS commit
-`adecbb4bf10af6ec6fdccd5a0578391aae27385e` from
+`8466eb3ca20fd8f7d7dba807d80869aaee39a1b5` from
 [MakeReadyOS](https://github.com/nextcode4u/MakeReadyOS).
 Use that revision and install its dependencies for a matching build.
 

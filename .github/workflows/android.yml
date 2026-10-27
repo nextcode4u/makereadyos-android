@@ -14,7 +14,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           repository: nextcode4u/MakeReadyOS
-          ref: adecbb4bf10af6ec6fdccd5a0578391aae27385e
+          ref: 8466eb3ca20fd8f7d7dba807d80869aaee39a1b5
           path: web-source
           persist-credentials: false
       - uses: actions/setup-java@v4
@@ -30,5 +30,5 @@ jobs:
           log-accepted-android-sdk-licenses: false
       - run: sdkmanager "platforms;android-36" "build-tools;35.0.0"
       - run: npm --prefix web-source/apps/web ci
-      - run: node scripts/bundle-web.mjs web-source
-      - run: ./gradlew --no-daemon --max-workers=2 testDebugUnitTest lintDebug assembleDebug
+      - run: node --test scripts/build.test.mjs
+      - run: node scripts/build.mjs --profile debug --web-source web-source

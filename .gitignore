@@ -8,7 +8,8 @@ local.properties
 *.iml
 .DS_Store
 .local/
-nonpublish/
+/nonpublish/*
+!/nonpublish/.gitkeep
 *.aab
 *.apks
 *.idsig
