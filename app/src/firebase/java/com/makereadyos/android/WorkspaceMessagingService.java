@@ -11,6 +11,7 @@ import androidx.core.app.NotificationManagerCompat;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 import java.util.Map;
+import org.json.JSONObject;
 
 public final class WorkspaceMessagingService extends FirebaseMessagingService {
     @Override public void onMessageReceived(RemoteMessage message) {
@@ -35,7 +36,10 @@ public final class WorkspaceMessagingService extends FirebaseMessagingService {
         p.edit().putString("seen", seen.substring(Math.max(0, seen.length() - 8192))).commit();
         WebView web = NativePushBridge.foreground.get();
         if (web != null) {
-            web.post(() -> web.evaluateJavascript("window.dispatchEvent(new Event('makereadyos-native-alert'))", null));
+            String script = "window.dispatchEvent(new CustomEvent('makereadyos-native-alert',{detail:{title:"
+                + JSONObject.quote(PushMessagePolicy.title(data)) + ",body:"
+                + JSONObject.quote(PushMessagePolicy.body(data, p.getString("language", "en").equals("es"))) + "}}))";
+            web.post(() -> web.evaluateJavascript(script, null));
             return;
         }
         if (!NotificationManagerCompat.from(this).areNotificationsEnabled()) return;
@@ -45,9 +49,10 @@ public final class WorkspaceMessagingService extends FirebaseMessagingService {
         Intent intent = new Intent(this, WebWorkspaceActivity.class).putExtra("server", p.getString("origin", ""))
             .putExtra("openAlerts", true).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent tap = PendingIntent.getActivity(this, 912, intent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
+        String body = PushMessagePolicy.body(data, es);
         manager.notify(id.hashCode(), new NotificationCompat.Builder(this, "work-alerts")
-            .setSmallIcon(R.drawable.ic_notification).setContentTitle("MakeReadyOS")
-            .setContentText(es ? "Tienes una alerta de trabajo. Abre Alertas para revisarla." : "You have a work alert. Open Alerts to review it.")
+            .setSmallIcon(R.drawable.ic_notification).setContentTitle(PushMessagePolicy.title(data))
+            .setContentText(body).setStyle(new NotificationCompat.BigTextStyle().bigText(body))
             .setVisibility(NotificationCompat.VISIBILITY_PRIVATE).setAutoCancel(true).setContentIntent(tap).build());
     }
 }

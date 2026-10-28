@@ -29,6 +29,14 @@ WebView interaction or device behavior.
 - Cancelled exports do not create downloads. Export errors remain visible.
 - Account changes do not reveal another user's data or submit their pending edits.
 - App upgrades preserve pending queues; uninstall/reset is explicitly treated as destructive.
+- With a matching Firebase sender/relay and APK, trigger a synthetic assignment or
+  final-walk correction. Background the app: the notification must name the event
+  and property/unit, and expanded text must show the summary. Tap and verify the
+  correct workspace opens. Repeat in the foreground: one descriptive toast, not a
+  duplicate system alert. Verify private notes/access codes are absent. Repeat
+  after logout/account switching to verify the old binding cannot display alerts.
+- An older server without summary fields retains a generic fallback. This is
+  compatibility behavior, not proof the new descriptive delivery is working.
 
 Test the oldest supported Android version and a current physical device.
 Record device, OS, app version and actual results privately. A passing build does

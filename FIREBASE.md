@@ -1,7 +1,13 @@
 # Firebase Messaging Build Setup
 
-Beta.4 includes device opt-in, session binding, generic native
-alerts and foreground toasts. It requires the matching updated MakeReadyOS API.
+Firebase builds include device opt-in, session binding, native
+alerts and foreground toasts. Current builds display the server's bounded event
+heading and property/unit context, including expandable notification text. They
+require the matching updated MakeReadyOS API and relay (if used). Deploy the relay
+before the API, then install the updated APK. Older servers retain a generic fallback.
+Summaries pass through Google and the configured relay; they must not contain resident
+names, access codes or free-form private notes. Android retains private lock-screen
+visibility, subject to the user's device settings.
 The previously published beta.3 remains SDK-only. Live end-to-end delivery must be
 verified with a configured sender and a Google Play services device before release.
 

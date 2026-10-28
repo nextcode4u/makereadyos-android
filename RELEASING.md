@@ -1,7 +1,7 @@
 # Releases
 
-The current release is **0.1.0-beta.6** (Android version code 8).
-Earlier beta.1 through beta.5 used codes 3 through 7. Use beta.7, beta.8, etc. for subsequent iterations.
+The current release is **0.1.0-beta.7** (Android version code 9).
+Earlier beta.1 through beta.6 used codes 3 through 8. Use beta.8, beta.9, etc. for subsequent iterations.
 After stabilization, use 0.1.x for fixes and 0.2.0 for a significant feature set.
 Every published APK must have a strictly increasing version code, regardless of
 the displayed version name.
