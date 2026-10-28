@@ -44,6 +44,26 @@ cannot establish that FCM delivery works.
 
 ## Server Setup
 
+### Shared Publisher App
+
+The source now supports optional shared-relay registration. A publisher can ship
+one Firebase-enabled app; unrelated servers receive separate relay credentials
+instead of the Firebase sender key. No per-user compilation or Firebase project
+is needed. Relay hosting/enrollment and physical-device acceptance testing must
+be completed before advertising this as an available public service.
+
+The app verifies an expiring, single-use FCM challenge against its current server
+origin, pending nonce and account binding. Verification is silent, not a user
+notification. An unverified token is not sufficient to enroll a device. Existing
+direct-Firebase registration remains supported. Older released APKs need updating
+to use this exchange; source changes alone do not upgrade installed apps.
+
+See the [relay operator and server guide](https://github.com/nextcode4u/MakeReadyOS/blob/main/docs/PUSH_RELAY.md).
+Publisher client identifiers are included in the APK; service-account keys and
+server relay credentials are not. The generic non-Firebase build remains available.
+
+### Direct Firebase
+
 The updated API accepts `FCM_PROJECT_ID` and `FCM_SERVICE_ACCOUNT_FILE` (a server-only
 credential path). Apply its Android-push migration and mount the credential privately
 read-only. Existing VAPID variables remain for browser Web Push. Never put a sender

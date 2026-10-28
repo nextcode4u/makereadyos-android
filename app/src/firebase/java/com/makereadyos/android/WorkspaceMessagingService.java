@@ -17,6 +17,15 @@ public final class WorkspaceMessagingService extends FirebaseMessagingService {
         SharedPreferences p = NativePushBridge.prefs(this);
         Map<String, String> data = message.getData();
         long now = System.currentTimeMillis();
+        if (message.getNotification() != null) return;
+        if ("relay-challenge".equals(data.get("kind"))) {
+            if (RelayChallengePolicy.accepts(data, p.getString("origin", ""), p.getString("relayNonce", ""),
+                p.getString("pendingBinding", ""), p.getLong("relayExpires", 0), now)) {
+                p.edit().putString("relayChallenge", data.get("challengeId")).putString("relayProof", data.get("proof")).commit();
+            }
+            return;
+        }
+        if (data.containsKey("origin") && !data.get("origin").equals(p.getString("origin", ""))) return;
         String id = data.get("notificationId");
         if (message.getNotification() != null || !PushMessagePolicy.accepts(data, p.getString("bindingId", ""),
             p.getBoolean("optedIn", false), p.getLong("expiresAt", 0), now)) return;

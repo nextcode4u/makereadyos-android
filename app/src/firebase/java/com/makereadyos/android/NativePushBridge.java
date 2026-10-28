@@ -48,14 +48,22 @@ final class NativePushBridge {
                 }
                 p.edit().putString("language", input.optString("language", p.getString("language", "en"))).apply();
                 result.put("configured", true).put("projectId", FirebaseApp.getInstance().getOptions().getProjectId());
+                result.put("relaySupported", true);
                 result.put("optedIn", p.getBoolean("optedIn", false));
                 result.put("enabled", p.getLong("expiresAt", 0) > System.currentTimeMillis() && NotificationManagerCompat.from(activity).areNotificationsEnabled());
                 result.put("bindingId", p.getString("bindingId", ""));
                 if (action.equals("status")) { reply.postMessage(result.toString()); return; }
+                if (action.equals("relayProof")) {
+                    if (p.getLong("relayExpires", 0) > System.currentTimeMillis()
+                        && input.getString("challengeId").equals(p.getString("relayChallenge", "")))
+                        result.put("proof", p.getString("relayProof", ""));
+                    reply.postMessage(result.toString()); return;
+                }
                 if (action.equals("activate")) {
                     if (!input.getString("bindingId").equals(p.getString("pendingBinding", ""))) throw new Exception();
                     p.edit().putString("bindingId", input.getString("bindingId")).putLong("expiresAt", input.getLong("expiresAt"))
-                        .putBoolean("optedIn", true).commit();
+                        .putString("boundToken", p.getString("preparedToken", "")).putBoolean("optedIn", true).commit();
+                    p.edit().remove("relayProof").remove("relayChallenge").remove("relayNonce").remove("relayExpires").commit();
                     reply.postMessage(result.toString()); return;
                 }
                 if (!action.equals("prepare") || (!input.optBoolean("interactive") && !p.getBoolean("optedIn", false))) throw new Exception();
@@ -73,8 +81,15 @@ final class NativePushBridge {
                             String token = task.getResult();
                             String binding = p.getString("pendingBinding", "");
                             if (binding.isEmpty()) binding = UUID.randomUUID().toString();
-                            p.edit().putString("pendingBinding", binding).commit();
+                            p.edit().putString("pendingBinding", binding).putString("preparedToken", token).commit();
                             result.put("token", token).put("bindingId", binding);
+                            result.put("registeredToken", token.equals(p.getString("boundToken", "")));
+                            if (input.optBoolean("relay")) {
+                                String nonce = UUID.randomUUID().toString();
+                                p.edit().putString("relayNonce", nonce).putLong("relayExpires", System.currentTimeMillis() + 120000)
+                                    .remove("relayProof").remove("relayChallenge").commit();
+                                result.put("nonce", nonce);
+                            }
                         }
                         reply.postMessage(result.toString());
                     } catch (Exception ignored) { /* A closed WebView cannot receive a reply. */ }
