@@ -4,7 +4,7 @@ The familiar MakeReadyOS mobile workspace, packaged for Android with camera and
 file selection, resident PDF saving/sharing/printing, and a locally bundled
 interface that does not disappear when a connection drops.
 
-**Current beta: 0.1.0-beta.8.** Android 8.0 or newer and a compatible MakeReadyOS
+**Current beta: 0.1.0-beta.9.** Android 8.0 or newer and a compatible MakeReadyOS
 server are required. This is a beta, not a claim that every device or workflow
 has been certified.
 
