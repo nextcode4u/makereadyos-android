@@ -1,7 +1,7 @@
 # Releases
 
-The current release is **0.1.0-beta.11** (Android version code 13).
-Earlier beta.1 through beta.10 used codes 3 through 12. Use beta.12, beta.13, etc. for subsequent iterations.
+The current release is **0.1.0-beta.12** (Android version code 14).
+Earlier beta.1 through beta.11 used codes 3 through 13. Use beta.13, beta.14, etc. for subsequent iterations.
 After stabilization, use 0.1.x for fixes and 0.2.0 for a significant feature set.
 Every published APK must have a strictly increasing version code, regardless of
 the displayed version name.
