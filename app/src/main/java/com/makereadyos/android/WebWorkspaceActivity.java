@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.os.Bundle;
 import android.webkit.*;
-import android.view.WindowManager;
 import android.widget.*;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -32,7 +31,6 @@ public final class WebWorkspaceActivity extends Activity {
     public void onCreate(Bundle saved) {
         WorkspaceTheme.style(this, WorkspaceTheme.saved(this));
         super.onCreate(saved);
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE);
         try { origin = ServerAddress.parse(getIntent().getStringExtra("server")).toString(); }
         catch (Exception invalid) { finish(); return; }
         // Until server/account switching and pending-work review are implemented, keep one origin per process.

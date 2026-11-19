@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -20,7 +19,6 @@ public final class MainActivity extends Activity {
         String mode = WorkspaceTheme.saved(this);
         WorkspaceTheme.style(this, mode);
         super.onCreate(state);
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE);
         String saved = getPreferences(MODE_PRIVATE).getString("server", "");
         if (!saved.isEmpty()) {
             try { open(ServerAddress.parse(saved).toString()); return; }
